@@ -43,6 +43,6 @@ import lombok.NoArgsConstructor;
         @ManyToOne
         @JoinColumn(name = "id_ecole")
         private Ecole ecole;
-          //constructeurs, getters, setters, etc.
+    //constructeurs, getters, setters, etc.
     }
 

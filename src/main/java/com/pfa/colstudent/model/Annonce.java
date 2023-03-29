@@ -52,7 +52,7 @@ public class Annonce {
     @OneToMany(mappedBy = "annonce", cascade = CascadeType.ALL)
     private List<Evaluation> evaluations;
 
-    @ManyToMany(mappedBy = "annonce", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "annonce", cascade = CascadeType.ALL)
     private List<Signalement> signalements;
 
 }
