@@ -14,15 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Data
 public class Evaluation {
-    /*@Id
-    @ManyToOne
-    @JoinColumn(name = "id_annonce")
-    private Annonce annonce;
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "id_user")
-    private User user;
-*/
+
 @EmbeddedId
 @Column(name="eval_id")
 private EvaluationId id=new EvaluationId();

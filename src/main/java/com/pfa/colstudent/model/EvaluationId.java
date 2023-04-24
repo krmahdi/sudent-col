@@ -13,6 +13,9 @@ import java.io.Serializable;
 public class EvaluationId implements Serializable {
 private Long annonceId;
 private Long userId;
+
+    public EvaluationId(Long annonceId, Long userId) {
+    }
    /* @ManyToOne
     @JoinColumn(name = "id_annonce")
     private Annonce annonce;

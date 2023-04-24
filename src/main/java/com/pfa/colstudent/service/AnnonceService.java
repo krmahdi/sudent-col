@@ -1,5 +1,6 @@
 package com.pfa.colstudent.service;
 import com.pfa.colstudent.model.Annonce;
+import com.pfa.colstudent.model.AnnonceSearchDao;
 import com.pfa.colstudent.repository.AnnonceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,9 @@ public class AnnonceService {
 
     @Autowired
     private AnnonceRepository annonceRepository;
-
+@Autowired
+private AnnonceSearchDao annonceSearchDao;
+private Annonce annonce;
     public Annonce save(Annonce annonce) {
         Annonce save = annonceRepository.save( annonce );
         return save;
@@ -29,4 +32,7 @@ public class AnnonceService {
     public void deleteById(Long id) {
         annonceRepository.deleteById(id);
     }
+public List<Annonce> filtering(){
+    return annonceSearchDao.findAllByCriteria(annonce);
+}
 }

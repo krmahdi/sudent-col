@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/annonces")
+@RequestMapping("/api/v1/auth/annonce")
 public class AnnonceController {
 
     @Autowired
