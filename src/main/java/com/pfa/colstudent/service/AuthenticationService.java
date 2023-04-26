@@ -24,20 +24,15 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
-        var user = User.builder()
+    public User register(RegisterRequest request) {
+        var created_user = User.builder()
                 .nom(request.getFirstname())
                 .prenom(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();
-        var savedUser = repository.save(user);
-        var jwtToken = jwtService.generateToken(user);
-        saveUserToken(savedUser, jwtToken);
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
+        return  repository.save(created_user);
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
