@@ -1,6 +1,7 @@
 package com.pfa.colstudent.controller;
 
 import com.pfa.colstudent.model.Annonce;
+import com.pfa.colstudent.model.AnnonceSearchDao;
 import com.pfa.colstudent.service.AnnonceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,17 +13,28 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/auth/annonce")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AnnonceController {
 
     @Autowired
     private AnnonceService annonceService;
+    @Autowired
+    private AnnonceSearchDao annonceSearchDao;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Annonce> create(@RequestBody Annonce annonce) {
         Annonce createdAnnonce = annonceService.save(annonce);
         return new ResponseEntity<>(createdAnnonce, HttpStatus.CREATED);
     }
-
+    @GetMapping("/search")
+    public ResponseEntity <List<Annonce>> search(@RequestParam("q") String query) {
+        List<Annonce> annonces= annonceService.search(query);
+        return new ResponseEntity<>(annonces, HttpStatus.OK);
+    }
+    @GetMapping("/filter")
+    public List<Annonce> filter(Annonce annonce) {
+        return annonceSearchDao.findAllByCriteria(annonce);
+    }
     @GetMapping("/{id}")
     public ResponseEntity<Annonce> findById(@PathVariable Long id) {
         Optional<Annonce> optionalAnnonce = annonceService.findById(id);

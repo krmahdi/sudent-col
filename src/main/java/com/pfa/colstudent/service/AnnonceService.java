@@ -5,6 +5,7 @@ import com.pfa.colstudent.repository.AnnonceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.List;
 
@@ -21,6 +22,17 @@ private Annonce annonce;
         return save;
     }
 
+    public List<Annonce> search(String query) {
+        List<Annonce> annonces = annonceRepository.findAll();
+        List<Annonce> result = new ArrayList<>();
+        for (Annonce annonce : annonces) {
+            if (annonce.getDescription().contains(query)
+                    || annonce.getAdresse().contains(query)) {
+                result.add(annonce);
+            }
+        }
+        return result;
+    }
     public Optional<Annonce> findById(Long id) {
         return annonceRepository.findById(id);
     }
