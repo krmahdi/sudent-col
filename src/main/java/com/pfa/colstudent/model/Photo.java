@@ -1,4 +1,6 @@
 package com.pfa.colstudent.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +28,11 @@ private Long idPhoto;
     @Column(name="path_photo")
 private String pathPhoto;
     @ManyToOne
+
+
     @JoinColumn(name = "id_annonce")
+    @JsonIgnore
+
     private Annonce annonce;
 
     // getters and setters

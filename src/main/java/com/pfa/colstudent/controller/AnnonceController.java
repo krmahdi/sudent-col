@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/auth/annonce")
+@RequestMapping("/api/auth/v1/annonce")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AnnonceController {
 
@@ -46,13 +46,13 @@ public class AnnonceController {
         }
     }
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<List<Annonce>> findAll() {
         List<Annonce> annonces = annonceService.findAll();
         return new ResponseEntity<>(annonces, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/put/{id}")
     public ResponseEntity<Annonce> update(@PathVariable Long id, @RequestBody Annonce annonce) {
         Optional<Annonce> optionalAnnonce = annonceService.findById(id);
         if (optionalAnnonce.isPresent()) {
@@ -64,7 +64,7 @@ public class AnnonceController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         Optional<Annonce> optionalAnnonce = annonceService.findById(id);
         if (optionalAnnonce.isPresent()) {

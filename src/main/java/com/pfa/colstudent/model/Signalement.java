@@ -1,4 +1,6 @@
 package com.pfa.colstudent.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,12 +26,18 @@ public class Signalement {
     @EmbeddedId
     @Column(name="signal_id")
     private SignalementId id=new SignalementId();
+
     @ManyToOne
     @MapsId("annonceId") // maps table1PK attribute of embedded id
     @JoinColumn(name = "annonce_id")
+    @JsonIgnore
+
     private Annonce annonce;
+
     @ManyToOne
     @MapsId("userId") // maps table2PK attribute of embedded id
     @JoinColumn(name = "user_id")
+    @JsonIgnore
+
     User user;
 }

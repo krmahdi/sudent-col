@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/ecoles")
+@RequestMapping("/api/auth/ecoles")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 public class EcoleController {
 
     @Autowired
@@ -21,6 +23,10 @@ public class EcoleController {
     @GetMapping("/{id}")
     public Ecole getEcoleById(@PathVariable Long id) {
         return ecoleService.getEcoleById(id);
+    }
+    @GetMapping("/name")
+    public Ecole getEcoleByname(@RequestParam("q") String nom) {
+        return ecoleService.getEcoleByname( nom );
     }
 
     @PostMapping("/post")

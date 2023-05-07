@@ -1,5 +1,6 @@
 package com.pfa.colstudent.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -39,8 +40,14 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
-    @ManyToOne
+
+    @OneToMany(mappedBy = "user")
+    private List<Annonce> annonces;
+
+    @ManyToOne()
     @JoinColumn(name = "id_ecole")
+    @JsonIgnore
+
     private Ecole ecole;
     /*
     @Column(name="id_user")

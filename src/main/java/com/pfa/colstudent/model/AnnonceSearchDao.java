@@ -35,10 +35,7 @@ public class AnnonceSearchDao {
         CriteriaQuery<Annonce> cQ=cr.createQuery(Annonce.class);
         List<Predicate> predicates = new ArrayList<>();
         Root<Annonce> root = cQ.from(Annonce.class);
-        if(request.getDescription()!=null){
-            Predicate descriptionPredicate=cr.like(root.get( "description"),"%"+request.getDescription( )+"%");
-            predicates.add(descriptionPredicate);
-        }
+
         if(request.getSuperficie()!=0.0){
             Predicate superficiePredicate=cr.equal(root.get( "superficie"),request.getSuperficie( ));
             predicates.add(superficiePredicate);

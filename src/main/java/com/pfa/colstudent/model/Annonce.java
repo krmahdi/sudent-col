@@ -1,12 +1,17 @@
 package com.pfa.colstudent.model;
 
+import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name="annonce")
 @Getter
@@ -45,13 +50,13 @@ public class Annonce {
     private double altitude;
     @ManyToOne
     @JoinColumn(name = "id_user")
+    @JsonIgnore
     private User user;
     @OneToMany(mappedBy = "annonce")
     private List<Photo> photos;
 
     @OneToMany(mappedBy = "annonce", cascade = CascadeType.ALL)
     private List<Evaluation> evaluations;
-
     @OneToMany(mappedBy = "annonce", cascade = CascadeType.ALL)
     private List<Signalement> signalements;
 

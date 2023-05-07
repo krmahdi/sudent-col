@@ -3,12 +3,10 @@ package com.pfa.colstudent.service;
 import com.pfa.colstudent.auth.AuthenticationRequest;
 import com.pfa.colstudent.auth.AuthenticationResponse;
 import com.pfa.colstudent.auth.RegisterRequest;
-import com.pfa.colstudent.model.Token;
-import com.pfa.colstudent.model.TokenType;
+import com.pfa.colstudent.model.*;
 import com.pfa.colstudent.repository.TokenRepository;
 import com.pfa.colstudent.repository.UserRepository;
-import com.pfa.colstudent.model.User;
-import com.pfa.colstudent.model.Role;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,14 +21,18 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-
+private final EcoleService ecoleService;
     public User register(RegisterRequest request) {
+        Ecole ecole = ecoleService.getEcoleById(request.getId());
+        System.out.println(ecole);
         var created_user = User.builder()
                 .nom(request.getFirstname())
                 .prenom(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
+                .numTel( request.getNumTel() )
+                .ecole(ecole)
                 .build();
         return  repository.save(created_user);
     }

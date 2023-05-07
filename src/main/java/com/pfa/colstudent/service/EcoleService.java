@@ -20,6 +20,9 @@ public class EcoleService {
     public Ecole getEcoleById(Long id) {
         return ecoleRepository.findById(id).orElse(null);
     }
+    public Ecole getEcoleByname(String nom) {
+        return ecoleRepository.findEcoleByNomEcoleEquals( nom ).orElse(null);
+    }
 
     public Ecole saveEcole(Ecole ecole) {
         return ecoleRepository.save(ecole);

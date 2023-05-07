@@ -1,11 +1,6 @@
 package com.pfa.colstudent.model;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +29,7 @@ public class Ecole {
     private long codePostal;
     @Column(name="Ville")
     private String ville;
+
     @OneToMany(mappedBy = "ecole")
     private List<User> user;
 }
