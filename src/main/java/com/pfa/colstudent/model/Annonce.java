@@ -28,6 +28,13 @@ public class Annonce {
     private String description;
     @Column(name = "superficie")
     private float superficie;
+    @Column(name="transport")
+    @Enumerated(EnumType.STRING)
+    private Transport transport;
+    @Column(name = "date")
+    private Date date;
+    @Column(name = "date de disponibilité")
+    private Date date_dispo;
     @Column(name = "loyer")
     private double loyer;
     @Column(name = "nbChambre")

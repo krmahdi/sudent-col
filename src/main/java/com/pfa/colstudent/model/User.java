@@ -47,7 +47,6 @@ public class User implements UserDetails {
     @ManyToOne()
     @JoinColumn(name = "id_ecole")
     @JsonIgnore
-
     private Ecole ecole;
     /*
     @Column(name="id_user")
